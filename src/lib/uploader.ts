@@ -1,10 +1,19 @@
-function fileReader(file: File) {
+import { splitText } from "./textSplitter";
+import { createVectorEmbeddings } from "./createVectors";
+
+export function fileReader(file: File | undefined | null) {
   const fr = new FileReader();
-  fr.readAsText(file);
+  fr.readAsText(file!);
 
   fr.onload = async () => {
     const fileContent = convertToString(fr.result);
-    console.log(fileContent);
+    // console.log(fileContent);
+
+    //split the text into Documents
+    const documents = await splitText(fileContent);
+    console.log(documents);
+    const embeddings = await createVectorEmbeddings(documents);
+    console.log(embeddings);
   };
 }
 

@@ -6,7 +6,7 @@ const textSplitter = new RecursiveCharacterTextSplitter({
   separators: ["\n\n", "\n", " ", ""],
 });
 
-async function splitText(text: string) {
-  const documentChunks = await textSplitter.createDocuments([text]);
-  return documentChunks;
+export async function splitText(text: string) {
+  const textChunks = await textSplitter.splitText(text);
+  return textChunks;
 }
