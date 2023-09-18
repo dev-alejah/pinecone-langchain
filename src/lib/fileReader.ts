@@ -1,5 +1,6 @@
 import { splitText } from "./textSplitter";
 import { createVectorEmbeddings } from "./createVectors";
+// import { prepareData } from "./upsert";
 
 export function fileReader(file: File | undefined | null) {
   const fr = new FileReader();
@@ -7,13 +8,15 @@ export function fileReader(file: File | undefined | null) {
 
   fr.onload = async () => {
     const fileContent = convertToString(fr.result);
+    return fileContent;
     // console.log(fileContent);
 
     //split the text into Documents
-    const documents = await splitText(fileContent);
-    console.log(documents);
-    const embeddings = await createVectorEmbeddings(documents);
-    console.log(embeddings);
+    // const documents = await splitText(fileContent);
+    // console.log(documents);
+    // const embeddings = await createVectorEmbeddings(documents);
+    // console.log(embeddings);
+    // prepareData(embeddings);
   };
 }
 
