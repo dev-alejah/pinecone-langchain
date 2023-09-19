@@ -38,14 +38,28 @@ export default function Home() {
     const response = await fetch("/api/multiTenant");
     console.log(response.json());
   }
+
+  async function handleScraper() {
+    const response = await fetch("/api/scraper");
+    console.log(response.json());
+  }
+
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen">
-      <button
-        onClick={handleCreate}
-        className="px-4 py-2 rounded bg-stone-300 text-stone-800"
-      >
-        Create a namespace
-      </button>
+      <div className="flex gap-x-4">
+        <button
+          onClick={handleCreate}
+          className="px-4 py-2 rounded bg-stone-300 text-stone-800"
+        >
+          Create a namespace
+        </button>
+        <button
+          className="px-4 py-2 rounded bg-stone-300 text-stone-800"
+          onClick={handleScraper}
+        >
+          Scrape the website
+        </button>
+      </div>
       <div className="w-full flex justify-center mt-[2em]">
         <label htmlFor="txtFile"></label>
         <input

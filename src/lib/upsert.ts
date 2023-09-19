@@ -15,7 +15,7 @@ export async function upsert(vector: PineconeRecord<RecordMetadata>[]) {
   const index = pinecone.index(process.env.PINECONE_INDEX_NAME!);
 
   //create a namespace
-  const namespaceOne = index.namespace("alejah-namespace");
+  const namespaceOne = index.namespace("test-namespace");
   const resultFromPinecone = await namespaceOne.upsert(vector);
 
   return resultFromPinecone;
