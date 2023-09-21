@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@pinecone-database/pinecone':
-    specifier: ^1.0.0
-    version: 1.0.0
+    specifier: ^1.0.1
+    version: 1.0.1
   '@types/node':
     specifier: 20.6.0
     version: 20.6.0
@@ -34,13 +34,16 @@ dependencies:
     version: 13.4.19(eslint@8.49.0)(typescript@5.2.2)
   langchain:
     specifier: ^0.0.146
-    version: 0.0.146(@pinecone-database/pinecone@1.0.0)(axios@1.5.0)(cheerio@1.0.0-rc.12)
+    version: 0.0.146(@pinecone-database/pinecone@1.0.1)(axios@1.5.0)(cheerio@1.0.0-rc.12)
   nanoid:
     specifier: ^5.0.1
     version: 5.0.1
   next:
     specifier: 13.4.19
     version: 13.4.19(react-dom@18.2.0)(react@18.2.0)
+  openai-edge:
+    specifier: ^1.2.2
+    version: 1.2.2
   postcss:
     specifier: 8.4.29
     version: 8.4.29
@@ -89,6 +92,18 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
+    dev: false
+
+  /@edge-runtime/primitives@4.0.1:
+    resolution: {integrity: sha512-hxWUzx1SeyOed/Ea9Z6y6tyFKSj8gQWIdLilybTR2ene1IthLZE01A1SLGoch1szUdhFlUwpWDaYBYQw00lj2g==}
+    engines: {node: '>=16'}
+    dev: false
+
+  /@edge-runtime/types@2.2.3:
+    resolution: {integrity: sha512-zL0ENQWwdocECEQXVopGTfnqI0tJ8wzDOCoQymoc8MLRz+Zw2V1W0ex9vczniTUzB+H/P7ubMgx3GFzLp3NPBg==}
+    engines: {node: '>=16'}
+    dependencies:
+      '@edge-runtime/primitives': 4.0.1
     dev: false
 
   /@eslint-community/eslint-utils@4.4.0(eslint@8.49.0):
@@ -290,14 +305,16 @@ packages:
       fastq: 1.15.0
     dev: false
 
-  /@pinecone-database/pinecone@1.0.0:
-    resolution: {integrity: sha512-CtsfbK4qTDjnS56FVH64FEWNVnhwOyheBlLe3e9T6o9Gaxc00f/079JWUUiZ1lrkc3K/YkmlYYOXbdGyKP2z3A==}
+  /@pinecone-database/pinecone@1.0.1:
+    resolution: {integrity: sha512-rzgIn4HPyy8PoKI97pUObzAiQuNGCentDkHfjuf0+ioNlHIxdQRXBNF2vF4Pw33kkHmfHIDRTr19pqNxKwn3+Q==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@sinclair/typebox': 0.28.20
-      '@types/web': 0.0.99
+      '@edge-runtime/types': 2.2.3
+      '@sinclair/typebox': 0.29.6
+      '@types/node': 18.17.15
       ajv: 8.12.0
       cross-fetch: 3.1.8
+      typescript: 4.9.5
     transitivePeerDependencies:
       - encoding
     dev: false
@@ -306,8 +323,8 @@ packages:
     resolution: {integrity: sha512-0xd7qez0AQ+MbHatZTlI1gu5vkG8r7MYRUJAHPAHJBmGLs16zpkrpAVLvjQKQOqaXPDUBwOiJzNc00znHSCVBw==}
     dev: false
 
-  /@sinclair/typebox@0.28.20:
-    resolution: {integrity: sha512-QCF3BGfacwD+3CKhGsMeixnwOmX4AWgm61nKkNdRStyLVu0mpVFYlDSY8gVBOOED1oSwzbJauIWl/+REj8K5+w==}
+  /@sinclair/typebox@0.29.6:
+    resolution: {integrity: sha512-aX5IFYWlMa7tQ8xZr3b2gtVReCvg7f3LEhjir/JAjX2bJCMVJA5tIPv30wTD4KDfcwMd7DDYY3hFDeGmOgtrZQ==}
     dev: false
 
   /@swc/helpers@0.5.1:
@@ -363,10 +380,6 @@ packages:
 
   /@types/uuid@9.0.3:
     resolution: {integrity: sha512-taHQQH/3ZyI3zP8M/puluDEIEvtQHVYcC6y3N8ijFtAd28+Ey/G4sg1u2gB01S8MwybLOKAp9/yCMu/uR5l3Ug==}
-    dev: false
-
-  /@types/web@0.0.99:
-    resolution: {integrity: sha512-xMz3tOvtkZzc7RpQrDNiLe5sfMmP+fz8bOxHIZ/U8qXyvzDX4L4Ss1HCjor/O9DSelba+1iXK1VM7lruX28hiQ==}
     dev: false
 
   /@typescript-eslint/parser@6.6.0(eslint@8.49.0)(typescript@5.2.2):
@@ -2000,7 +2013,7 @@ packages:
       json-buffer: 3.0.1
     dev: false
 
-  /langchain@0.0.146(@pinecone-database/pinecone@1.0.0)(axios@1.5.0)(cheerio@1.0.0-rc.12):
+  /langchain@0.0.146(@pinecone-database/pinecone@1.0.1)(axios@1.5.0)(cheerio@1.0.0-rc.12):
     resolution: {integrity: sha512-WPkvlYNBH1cqPH0/mcDzfNjht5VJSD7dJMHCjhagLneVD7v69yMiNNkrme+DKHOqnPBbNUHDmlXGLAnTs4gpDQ==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -2244,7 +2257,7 @@ packages:
         optional: true
     dependencies:
       '@anthropic-ai/sdk': 0.6.2
-      '@pinecone-database/pinecone': 1.0.0
+      '@pinecone-database/pinecone': 1.0.1
       ansi-styles: 5.2.0
       axios: 1.5.0
       binary-extensions: 2.2.0
@@ -2603,6 +2616,11 @@ packages:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
     dependencies:
       wrappy: 1.0.2
+    dev: false
+
+  /openai-edge@1.2.2:
+    resolution: {integrity: sha512-C3/Ao9Hkx5uBPv9YFBpX/x59XMPgPUU4dyGg/0J2sOJ7O9D98kD+lfdOc7v/60oYo5xzMGct80uFkYLH+X2qgw==}
+    engines: {node: '>=18'}
     dev: false
 
   /openai@4.4.0:
@@ -3269,6 +3287,12 @@ packages:
       call-bind: 1.0.2
       for-each: 0.3.3
       is-typed-array: 1.1.12
+    dev: false
+
+  /typescript@4.9.5:
+    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
     dev: false
 
   /typescript@5.2.2:

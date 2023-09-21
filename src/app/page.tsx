@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { fileReader } from "@/lib/fileReader";
+import { ChangeEvent, useState } from "react";
+import Toast from "@/components/toast";
 
 export default function Home() {
   const [file, setFile] = useState<File | null | undefined>();
   const [feedback, setFeedback] = useState<string>("none");
+  const [question, setQuestion] = useState<string>("");
+
   // async function handleSubmit(event: React.MouseEvent<HTMLButtonElement>) {
   //   fileReader(file);
   // }
@@ -44,20 +46,52 @@ export default function Home() {
     console.log(response.json());
   }
 
+  function handleQuestionChange(e: ChangeEvent<HTMLInputElement>) {
+    setQuestion(e.currentTarget.value);
+  }
+
+  async function query() {
+    const response = await fetch("/api/query");
+    console.log(await response.json());
+  }
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen">
+    <div className="flex flex-col items-center justify-center w-full h-screen relative">
+      <h3 className="text-white text-3xl font-bold absolute top-10">
+        🛝 NextJS x Langchain x Pinecone Playground
+      </h3>
+      <div className="flex items-end gap-x-4 absolute top-[8em]">
+        <div className="flex flex-col gap-y-2 w-[40em]">
+          <label htmlFor="query" className="text-sm text-stone-500">
+            Question
+          </label>
+          <input
+            type="text"
+            name="query"
+            id="query"
+            placeholder="Ask me a question."
+            className="px-4 py-2 rounded bg-black outline-none border border-stone-800"
+            onChange={handleQuestionChange}
+          />
+        </div>
+        <button
+          className="px-4 py-2 rounded bg-stone-300 text-stone-800"
+          onClick={query}
+        >
+          Ask
+        </button>
+      </div>
       <div className="flex gap-x-4">
         <button
           onClick={handleCreate}
           className="px-4 py-2 rounded bg-stone-300 text-stone-800"
         >
-          Create a namespace
+          💻 Create a namespace
         </button>
         <button
           className="px-4 py-2 rounded bg-stone-300 text-stone-800"
           onClick={handleScraper}
         >
-          Scrape the website
+          📝 Scrape the website
         </button>
       </div>
       <div className="w-full flex justify-center mt-[2em]">
@@ -78,6 +112,7 @@ export default function Home() {
         </button>
       </div>
       <section>{feedback !== "none" && <p>{feedback}</p>}</section>
+      <Toast />
     </div>
   );
 }
